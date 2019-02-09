@@ -1,9 +1,6 @@
 package edu.csc413.calculator.operators;
 
-
-
 import edu.csc413.calculator.evaluator.Operand;
-
 import java.util.HashMap;
 
 public abstract class Operator {
@@ -17,8 +14,19 @@ public abstract class Operator {
     // HashMap operators = new HashMap();
     // operators.put( "+", new AdditionOperator() );
     // operators.put( "-", new SubtractionOperator() );
-    
-    
+
+
+    static private final Map<String, Integer> calc = new HashMap<String, Integer>();
+        static{
+            //priority starts from 3 down
+            //reminder: 2 + 3 * 4 == 14
+            calc.put("+", 1);
+            calc.put("-", 1);
+            calc.put("*", 2);
+            calc.put("/", 2);
+            calc.put("^", 3);
+
+        }
 
     public abstract int priority();
     public abstract Operand execute(Operand op1, Operand op2 );
