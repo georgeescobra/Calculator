@@ -4,13 +4,17 @@ import edu.csc413.calculator.evaluator.Operand;
 
 public class AddOperator extends Operator{
     @Override
+
     public int priority(){
-        return calc.get("+");
+        int  pri = 1;
+        return pri;
 
     }
 
     @Override
     public Operand execute(Operand op1, Operand op2) {
+        Operand op = new Operand();
+
         return null;
     }
 }
