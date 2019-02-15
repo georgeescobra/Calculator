@@ -1,16 +1,18 @@
 package edu.csc413.calculator.evaluator;
+import java.lang.Integer;
 /**
  * Operand class used to represent an operand
  * in a valid mathematical expression.
  */
 public class Operand {
 
-  int val;
+  private int val;
   /**
   * construct operand from string token.
   */  
   public Operand( String token ) {
     val = Integer.parseInt(token);
+
   }
   /**
    * construct operand from integer

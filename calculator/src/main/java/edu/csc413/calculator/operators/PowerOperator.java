@@ -13,6 +13,9 @@ public class PowerOperator extends Operator {
     @Override
 
     public Operand execute(Operand op1, Operand op2) {
-        return null;
+
+        Operand result = new Operand((int)Math.pow(op1.getValue(), op2.getValue()));
+        return result;
+
     }
 }
