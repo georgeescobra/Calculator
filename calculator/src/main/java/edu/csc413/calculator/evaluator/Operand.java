@@ -9,9 +9,14 @@ public class Operand {
   private int val;
   /**
   * construct operand from string token.
-  */  
+  */
+
   public Operand( String token ) {
-    val = Integer.parseInt(token);
+
+      if (!token.matches(".*[a-z].*"))
+        val = Integer.parseInt(token);
+      else
+        System.out.println("Not A Valid Operand");
 
   }
   /**

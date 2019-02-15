@@ -46,6 +46,7 @@ public abstract class Operator {
             }else
             return true;
 
+
     }
 
     public static Operator getOperator(String token){
@@ -62,6 +63,10 @@ public abstract class Operator {
                     return new MultiplyOperator();
                 }else if(stk.equals("^")){
                     return new PowerOperator();
+                }else if(stk.equals("(")){
+                    return new Parantheses();
+                }else if(stk.equals(")")){
+                    return new Parantheses();
                 }
             }
 

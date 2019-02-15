@@ -2,16 +2,17 @@ package edu.csc413.calculator.evaluator;
 
 
 
-import edu.csc413.calculator.operators.Operator;
+import edu.csc413.calculator.operators.*;
 
 import java.util.Stack;
 import java.util.StringTokenizer;
+import java.lang.reflect.*;
 
 public class Evaluator {
   private Stack<Operand> operandStack;
   private Stack<Operator> operatorStack;
   private StringTokenizer tokenizer;
-  private static final String DELIMITERS = "+-*^/";
+  private static final String DELIMITERS = "+-*^/()";
 
   public Evaluator() {
     operandStack = new Stack<>();
@@ -38,18 +39,22 @@ public class Evaluator {
         // check if token is an operand
         if ( Operand.check( token )) {
           operandStack.push( new Operand( token ));
+          //bottom portion is for OPERATORS
         } else {
+
+          //checks if it is a valid operator
           if ( ! Operator.check( token )) {
             System.out.println( "*****invalid token******" );
             throw new RuntimeException("*****invalid token******");
           }
 
-
+          //this runs when it is a valid operator
           // TODO Operator is abstract - these two lines will need to be fixed:
           // The Operator class should contain an instance of a HashMap,
           // and values will be instances of the Operators.  See Operator class
           // skeleton for an example.
-          Operator newOperator = new Operator();
+
+          Operator newOperator = Operator.getOperator(token);
           
           while (operatorStack.peek().priority() >= newOperator.priority() ) {
             // note that when we eval the expression 1 - 2 we will
