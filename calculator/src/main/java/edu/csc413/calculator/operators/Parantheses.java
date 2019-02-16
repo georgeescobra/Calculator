@@ -6,7 +6,7 @@ public class Parantheses extends Operator{
     @Override
 
     public int priority(){
-        int  pri = 4;
+        int  pri = 0;
         return pri;
 
     }
