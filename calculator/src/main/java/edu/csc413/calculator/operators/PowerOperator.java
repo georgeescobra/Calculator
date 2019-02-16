@@ -14,8 +14,9 @@ public class PowerOperator extends Operator {
 
     public Operand execute(Operand op1, Operand op2) {
 
-        Operand result = new Operand((int)Math.pow(op1.getValue(), op2.getValue()));
-        return result;
+        Operand random = new Operand((int)Math.pow(op1.getValue(), op2.getValue()));
+
+        return random;
 
     }
 }

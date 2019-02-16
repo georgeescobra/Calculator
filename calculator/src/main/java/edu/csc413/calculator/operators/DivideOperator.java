@@ -14,9 +14,9 @@ public class DivideOperator extends Operator {
 
     public Operand execute(Operand op1, Operand op2) {
 
-        Operand result = new Operand(op1.getValue() / op2.getValue());
+        Operand random = new Operand(op1.getValue() / op2.getValue());
 
-        return result;
+        return random;
     }
 
 }

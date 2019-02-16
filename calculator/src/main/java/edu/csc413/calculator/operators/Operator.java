@@ -2,6 +2,7 @@ package edu.csc413.calculator.operators;
 
 import edu.csc413.calculator.evaluator.Operand;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public abstract class Operator {
@@ -39,38 +40,32 @@ public abstract class Operator {
      * Think about what happens if we add more operators.
      */
     public static boolean check( String token ) {
+        if(token.length() > 1){
+            return false;
+        }
+        if(!calc.containsKey(token)){
+            return false;
+        }
         //this will return any non-operator into stk and returns false if there is a token inside it
-        StringTokenizer stk = new StringTokenizer(token, "+-/*^() ", false);
-            if (stk.hasMoreTokens()){
-                return false;
-            }else
-            return true;
+        StringTokenizer stk = new StringTokenizer(token, "+-/*^()", true);
+            if (calc.containsKey(stk)) {
+                return true;
+            }
 
+        return true;
 
     }
 
     public static Operator getOperator(String token){
-        StringTokenizer stk = new StringTokenizer(token, "+-/*^", true);
-        while (stk.hasMoreTokens()){
-            if(calc.containsKey(stk)){
-                if(stk.equals("+")) {
-                    return new AddOperator();
-                }else if(stk.equals("-")){
-                    return new SubtractOperator();
-                }else if(stk.equals("/")){
-                    return new DivideOperator();
-                }else if(stk.equals("*")){
-                    return new MultiplyOperator();
-                }else if(stk.equals("^")){
-                    return new PowerOperator();
-                }else if(stk.equals("(")){
-                    return new Parantheses();
-                }else if(stk.equals(")")){
-                    return new Parantheses();
+            if(calc.containsKey(token)){
+                for(Map.Entry something : calc.entrySet()){
+                    String temp = (String) something.getKey();
+                    if ( temp.equals(token)){
+                        return (Operator) something.getValue();
+                    }
                 }
             }
 
-        }
         return null;
 
     }
