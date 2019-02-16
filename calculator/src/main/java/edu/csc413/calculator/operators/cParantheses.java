@@ -2,11 +2,11 @@ package edu.csc413.calculator.operators;
 
 import edu.csc413.calculator.evaluator.Operand;
 
-public class Parantheses extends Operator{
+public class cParantheses extends Operator{
     @Override
 
     public int priority(){
-        int  pri = 4;
+        int  pri = 0;
         return pri;
 
     }

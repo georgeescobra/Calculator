@@ -27,6 +27,8 @@ public abstract class Operator {
             calc.put("*", new MultiplyOperator());
             calc.put("/", new DivideOperator());
             calc.put("^", new PowerOperator());
+            calc.put("(", new Parantheses());
+            calc.put(")", new Parantheses());
 
         }
 
@@ -47,12 +49,11 @@ public abstract class Operator {
             return false;
         }
         //this will return any non-operator into stk and returns false if there is a token inside it
-        StringTokenizer stk = new StringTokenizer(token, "+-/*^()", true);
-            if (calc.containsKey(stk)) {
+            if (calc.containsKey(token)) {
                 return true;
             }
 
-        return true;
+        return false;
 
     }
 
@@ -61,12 +62,21 @@ public abstract class Operator {
                 for(Map.Entry something : calc.entrySet()){
                     String temp = (String) something.getKey();
                     if ( temp.equals(token)){
+
                         return (Operator) something.getValue();
                     }
                 }
             }
 
         return null;
+
+    }
+    public boolean check(){
+        String temp = this.toString();
+        if(temp.equals("(")){
+            return true;
+        }else
+            return false;
 
     }
 }

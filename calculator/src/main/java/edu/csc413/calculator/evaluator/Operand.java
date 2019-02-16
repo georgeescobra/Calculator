@@ -14,8 +14,6 @@ public class Operand {
 
   public Operand(String token) {
     val = Integer.parseInt(token);
-
-
   }
 
   /**
