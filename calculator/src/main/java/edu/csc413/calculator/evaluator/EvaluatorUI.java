@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.Vector;
 
 public class EvaluatorUI extends JFrame implements ActionListener {
@@ -104,9 +105,15 @@ public class EvaluatorUI extends JFrame implements ActionListener {
             }else if(arg0.getActionCommand().equals("=")){
                 //I copied the variables from the EvalDriver because I was lazy
                 int res;
+
                 Evaluator ev = new Evaluator();
-                res = ev.eval(txField.getText());
-                txField.setText(Integer.toString(res));
+                try {
+                    //this should catch the error for expressions like 3(9)
+                    res = ev.eval(txField.getText());
+                    txField.setText(Integer.toString(res));
+                }catch(EmptyStackException e){
+                    txField.setText("ERROR: Invalid Expression");
+                }
                 //I set the flag to true so that if the user keeps typing after getting the result
                 //the txtField will reset back to null and starts with the next user input
                 resultFlag = true;
