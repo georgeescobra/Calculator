@@ -49,16 +49,22 @@ public class Evaluator {
           if (operatorStack.isEmpty() || token.equals("(")) {
             operatorStack.push(newOperator);
           } else{
+            //this checks for the "("
               if (token.equals(")")) {
-                //this checks for the "("
-                do {
-                  //I should have just put this into a method, but did not realize I was going
-                  //to use more than once
-                  Operator oldOpr = operatorStack.pop();
-                  Operand op2 = operandStack.pop();
-                  Operand op1 = operandStack.pop();
-                  operandStack.push(oldOpr.execute(op1, op2));
-                } while (operatorStack.peek().priority() != 0 && operandStack.size() >1);
+                //this checks for cases like 6+9*(7)
+                if(operatorStack.peek().priority() == 0) {
+                  operatorStack.pop();
+                  continue;
+                }
+                  do {
+                    //I should have just put this into a method, but did not realize I was going
+                    //to use more than once
+                    Operator oldOpr = operatorStack.pop();
+                    Operand op2 = operandStack.pop();
+                    Operand op1 = operandStack.pop();
+                    operandStack.push(oldOpr.execute(op1, op2));
+                  } while (operatorStack.peek().priority() != 0 && operandStack.size() > 1);
+
                 operatorStack.pop();
                 continue;
               }
