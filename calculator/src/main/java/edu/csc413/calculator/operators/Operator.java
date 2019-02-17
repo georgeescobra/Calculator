@@ -42,16 +42,14 @@ public abstract class Operator {
      * Think about what happens if we add more operators.
      */
     public static boolean check( String token ) {
-        if(token.length() > 1){
-            return false;
-        }
-        if(!calc.containsKey(token)){
+
+        if(token.length() > 1 || !calc.containsKey(token)){
             return false;
         }
         //this will return any non-operator into stk and returns false if there is a token inside it
-            if (calc.containsKey(token)) {
-                return true;
-            }
+        if(calc.containsKey(token)) {
+            return true;
+        }
 
         return false;
 
@@ -59,6 +57,7 @@ public abstract class Operator {
 
     public static Operator getOperator(String token){
             if(calc.containsKey(token)){
+                //Goes through the Map until it finds the right key
                 for(Map.Entry something : calc.entrySet()){
                     String temp = (String) something.getKey();
                     if ( temp.equals(token)){
@@ -69,14 +68,5 @@ public abstract class Operator {
             }
 
         return null;
-
-    }
-    public boolean check(){
-        String temp = this.toString();
-        if(temp.equals("(")){
-            return true;
-        }else
-            return false;
-
     }
 }

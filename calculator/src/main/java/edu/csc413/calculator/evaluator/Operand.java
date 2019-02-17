@@ -42,6 +42,7 @@ public class Operand {
           return true;
         } else
           return false;
+        //if the token isn't convertible then it throws an exception
       } catch (NumberFormatException ep) {
         return false;
       }

@@ -45,15 +45,15 @@ public class Evaluator {
             throw new RuntimeException("*****invalid token******");
           }
 
-
           Operator newOperator = Operator.getOperator(token);
           if (operatorStack.isEmpty() || token.equals("(")) {
             operatorStack.push(newOperator);
-            continue;
-          } else if(!operatorStack.isEmpty()){
+          } else{
               if (token.equals(")")) {
                 //this checks for the "("
                 do {
+                  //I should have just put this into a method, but did not realize I was going
+                  //to use more than once
                   Operator oldOpr = operatorStack.pop();
                   Operand op2 = operandStack.pop();
                   Operand op1 = operandStack.pop();
@@ -63,7 +63,6 @@ public class Evaluator {
                 continue;
               }
 
-          if (!operatorStack.isEmpty()) {
               while (operatorStack.peek().priority() >= newOperator.priority()) {
                 // note that when we eval the expression 1 - 2 we will
                 // push the 1 then the 2 and then do the subtraction operation
@@ -81,7 +80,6 @@ public class Evaluator {
               //or if while loop gets exec
               operatorStack.push(newOperator);
 
-          }
         }
         }
       }
